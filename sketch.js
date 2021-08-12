@@ -1,3 +1,5 @@
+var edges;
+
 function preload() {
   bg = loadImage("Images/iss.png");
   sleep = loadAnimation("Images/sleep.png");
@@ -11,48 +13,58 @@ function preload() {
 function setup() {
   createCanvas(600, 500);
 
-  if (keyDown("UP_ARROW")) {
-    astrounaut = createSprite(300, 230);
+  
+  astrounaut = createSprite(300, 230);
+  astrounaut.addAnimation("sleeping", sleep);
+  astrounaut.scale = 0.1;
+  edges = createEdgeSprites();
+}
+
+
+
+function draw() {
+  background(bg);
+  astrounaut.bounceOff(edges);
+  if (keyDown(UP_ARROW)) {
     astrounaut.addAnimation("brushing", brush);
     astrounaut.changeAnimation("brushing");
     astrounaut.scale = 0.1;
     astrounaut.y = 355;
-    astrounaut.velocityX = 3;
-    astrounaut.velocityY = 2;
+    astrounaut.velocityX = 0;
+    astrounaut.velocityY = 0;
 
   }
-  if (keyDown("DOWN_ARROW")) {
-    astrounaut = createSprite(300, 230);
+  if (keyDown(DOWN_ARROW)) {
     astrounaut.addAnimation("gymming", gym);
     astrounaut.changeAnimation("gymming");
     astrounaut.scale = 0.1;
     astrounaut.y = 354;
     astrounaut.velocityX = 0;
-    astrounaut.velocityY = 1;
+    astrounaut.velocityY = 0;
 
   }
-  if (keyDown("LEFT_ARROW")) {
-    astrounaut = createSprite(300, 230);
+  if (keyDown(LEFT_ARROW)) {
+
     astrounaut.addAnimation("eating", eat);
     astrounaut.changeAnimation("eating");
     astrounaut.scale = 0.1;
     astrounaut.y = 353;
-    astrounaut.velocityX = 1;
+    astrounaut.velocityX = 0;
     astrounaut.velocityY = 0;
 
   }
-  if (keyDown("RIGHT_ARROW")) {
-    astrounaut = createSprite(300, 230);
+  if (keyDown(RIGHT_ARROW)) {
+
     astrounaut.addAnimation("drinking", drink);
     astrounaut.changeAnimation("drinking");
     astrounaut.scale = 0.1;
     astrounaut.y = 352;
-    astrounaut.velocityX = 4;
-    astrounaut.velocityY = 1;
+    astrounaut.velocityX = 0;
+    astrounaut.velocityY = 0;
 
   }
   if (keyDown("m")) {
-    astrounaut = createSprite(300, 230);
+
     astrounaut.addAnimation("moving", move);
     astrounaut.changeAnimation("moving");
     astrounaut.scale = 0.1;
@@ -60,16 +72,8 @@ function setup() {
     astrounaut.velocityX = 2;
     astrounaut.velocityY = 2;
 
+
   }
-  astrounaut = createSprite(300, 230);
-  astrounaut.addAnimation("sleeping", sleep);
-  astrounaut.scale = 0.1;
-}
-
-
-
-function draw() {
-  background(bg);
-  createEdgeSprites();
   drawSprites();
+  
 }
